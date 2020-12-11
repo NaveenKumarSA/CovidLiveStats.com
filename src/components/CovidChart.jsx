@@ -5,6 +5,7 @@ import axios from "axios";
 import { ProgressBar } from "react-bootstrap";
 import { CircularProgress, LinearProgress } from "@material-ui/core";
 import { CenterFocusStrong } from "@material-ui/icons";
+import CountUp from "react-countup";
 
 class CovidChart extends Component {
   constructor(props) {
@@ -54,7 +55,10 @@ class CovidChart extends Component {
     return (
       <div>
         {/*   <div>{console.log(covidReports[0].country)}</div> */}
-        <h2 style={{ fontWeight: "2vh" }}>Covid Report of 269 Countries</h2>
+        <h2 style={{ fontWeight: "2vh" }}>
+          Covid Report of {<CountUp start={0} end={269} duration={15} />}{" "}
+          Countries
+        </h2>
         {/* I am writing a Condition here to check the api call is executed, 
         if "no" i will render some loading animations  
         if "yes" i will render the table to render the table of data */}
@@ -66,12 +70,12 @@ class CovidChart extends Component {
           </div>
         ) : (
           <div className="fadeInAnimation" style={{ alignItems: "center" }}>
-            <table className="table table-striped table-responsive ">
-              <thead className="covidReportTable">
+            <table className="table table-striped table-responsive  covidReportTable ">
+              <thead className="">
                 <tr>
-                  <td>
+                  {/*   <td>
                     <b>CONTINENT</b>
-                  </td>
+                  </td> */}
                   <td>
                     <b>COUNTRY</b>
                   </td>
@@ -107,13 +111,13 @@ class CovidChart extends Component {
               <tbody>
                 {covidReports.map((covidReport) => (
                   <tr key={covidReport.country} scope="row">
-                    <td>
+                    {/* <td>
                       <p>
                         {covidReport.continent === null
                           ? "NA"
                           : covidReport.continent}
                       </p>
-                    </td>
+                    </td> */}
                     <td>
                       <p>
                         {covidReport.country === null
@@ -135,7 +139,7 @@ class CovidChart extends Component {
                         {covidReport.cases.new === null ? (
                           <p style={{ color: "#f6e" }}>NA</p>
                         ) : (
-                          covidReport.cases.new
+                          <CountUp end={covidReport.cases.new} duration={5} />
                         )}
                       </p>
                     </td>
@@ -144,7 +148,10 @@ class CovidChart extends Component {
                         {covidReport.cases.active === null ? (
                           <p style={{ color: "#f6e" }}>NA</p>
                         ) : (
-                          covidReport.cases.active
+                          <CountUp
+                            end={covidReport.cases.active}
+                            duration={7}
+                          />
                         )}
                       </p>
                     </td>
@@ -153,7 +160,10 @@ class CovidChart extends Component {
                         {covidReport.cases.critical === null ? (
                           <p style={{ color: "#f6e" }}>NA</p>
                         ) : (
-                          covidReport.cases.critical
+                          <CountUp
+                            end={covidReport.cases.critical}
+                            duration={6}
+                          />
                         )}
                       </p>
                     </td>
@@ -162,7 +172,10 @@ class CovidChart extends Component {
                         {covidReport.cases.recovered === null ? (
                           <p style={{ color: "#f6e" }}>NA</p>
                         ) : (
-                          covidReport.cases.recovered
+                          <CountUp
+                            end={covidReport.cases.recovered}
+                            duration={8}
+                          />
                         )}
                       </p>
                     </td>
@@ -171,7 +184,7 @@ class CovidChart extends Component {
                         {covidReport.deaths.new === null ? (
                           <p style={{ color: "#f6e" }}>NA</p>
                         ) : (
-                          covidReport.deaths.new
+                          <CountUp end={covidReport.deaths.new} duration={7} />
                         )}
                       </p>
                     </td>
@@ -180,7 +193,10 @@ class CovidChart extends Component {
                         {covidReport.deaths.total === null ? (
                           <p style={{ color: "#f6e" }}>NA</p>
                         ) : (
-                          covidReport.deaths.total
+                          <CountUp
+                            end={covidReport.deaths.total}
+                            duration={5}
+                          />
                         )}
                       </p>
                     </td>
@@ -189,7 +205,7 @@ class CovidChart extends Component {
                         {covidReport.tests.total === null ? (
                           <p style={{ color: "#f6e" }}>NA</p>
                         ) : (
-                          covidReport.tests.total
+                          <CountUp end={covidReport.tests.total} duration={5} />
                         )}
                       </p>
                     </td>
