@@ -221,7 +221,7 @@ class CovidChart extends Component {
                   </tr>
                 ))}
               </tbody>
-              ;
+              
             </table>
           </div>
         )}
